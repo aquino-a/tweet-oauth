@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="twitter.js"></script>
+    </head>
+    <body>
+        <button id="login">Login to Twitter</button>
+        <br/>
+        <input type="text" id="clientId" />
+        <br/>
+        <input type="text" id="clientSecret" />
+        <br/>
+        <label>access token</label>
+        <div id="accessToken"></div>
+        <br/>
+        <label>refresh token</label>
+        <div id="refreshToken"></div>
+    </body>
+    <script>
+
+        document.getElementById("login").addEventListener("click", () => {
+            var client = getClientDetails();
+            login(client.ci, client.cs);
+        });
+
+        var urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.has("code")) {
+            var client = getClientDetails();
+            token(client.ci, client.cs, urlParams.get("code"))
+                    .then(r => console.log(r));
+        }
+
+    </script>
+</html>
