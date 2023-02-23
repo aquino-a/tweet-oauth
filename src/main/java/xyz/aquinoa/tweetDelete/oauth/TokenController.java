@@ -50,14 +50,17 @@ public class TokenController {
 
     private static final String TOKEN_URL = "https://api.twitter.com/2/oauth2/token";
 
-    @Value("clientId")
+    @Value("${clientId}")
     private String clientId;
 
-    @Value("clientSecret")
+    @Value("${clientSecret}")
     private String clientSecret;
 
     @Autowired
     private OkHttpClient httpClient;
+    
+    @Autowired
+    private ObjectMapper objectMapper;
 
     @GetMapping("/token")
     @ResponseBody
@@ -78,12 +81,13 @@ public class TokenController {
                 .build();
         
         var response = httpClient.newCall(request).execute();
+        var body = response.body().string();
+        System.out.println(body);
+
         if (!response.isSuccessful()) {
             throw new IOException("Unexpected code " + response);
         }
-        
-        System.out.println(response.body().string());
 
-        return null;
+        return objectMapper.readValue(body, OauthValues.class);
     }
 }

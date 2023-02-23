@@ -28,24 +28,11 @@ const login = (clientId, clientSecret) => {
 }
 
 const token = async (clientId, clientSecret, code) => {
-    var tokenUrl = "https://api.twitter.com/2/oauth2/token";
+    var tokenUrl = "token?";
     var urlParams = new URLSearchParams();
     urlParams.append("code", code);
-    urlParams.append("grant_type", "authorization_code");
-    urlParams.append("redirect_uri", "http://aquinoa.xyz");
-    urlParams.append("code_verifier", "challenge");
-    
-    var auth = 'Basic ' + btoa(`${clientId}:${clientSecret}`);
 
-    const response = await fetch(tokenUrl, {
-        method: 'POST', // *GET, POST, PUT, DELETE, etc.
-        mode: 'cors',
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-            'Authorization': auth
-        },
-        body: urlParams.toString()
-    });
+    const response = await fetch(tokenUrl + urlParams.toString());
 
     console.log(response);
     return response;
