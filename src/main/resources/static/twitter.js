@@ -34,7 +34,8 @@ const token = async (clientId, clientSecret, code) => {
 
     const response = await fetch(tokenUrl + urlParams.toString());
 
-    console.log(response);
-    return response;
+    var obj = await response.json();
+    console.log(obj);
+    return obj;
 }
 

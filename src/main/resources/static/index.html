@@ -34,7 +34,10 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
         if (urlParams.has("code")) {
             var client = getClientDetails();
             token(client.ci, client.cs, urlParams.get("code"))
-                    .then(r => console.log(r));
+                    .then(obj => {
+                        document.getElementById("accessToken").textContent = obj.accessToken;
+                        document.getElementById("refreshToken").textContent = obj.refreshToken;
+                    });
         }
 
     </script>
