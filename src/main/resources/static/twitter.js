@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Other/javascript.js to edit this template
  */
 
-const scopes = ["tweet.read", "tweet.write", "offline.access"]
+const scopes = ["tweet.read", "users.read", "tweet.write", "offline.access"]
 
 const getClientDetails = () => {
     var ci = document.getElementById("clientId").value;
