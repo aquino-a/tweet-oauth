@@ -1,0 +1,10 @@
+[Unit]
+Description=starts tweet oauth backend
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/java -jar /opt/tweet-oauth/oauth.jar
+
+[Install]
+WantedBy=multi-user.target
+
