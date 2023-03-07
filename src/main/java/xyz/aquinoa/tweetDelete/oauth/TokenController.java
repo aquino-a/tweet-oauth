@@ -58,9 +58,15 @@ public class TokenController {
 
     @Autowired
     private OkHttpClient httpClient;
-    
+
     @Autowired
     private ObjectMapper objectMapper;
+
+    @GetMapping("/clientId")
+    @ResponseBody
+    public String getClientId() {
+        return clientId;
+    }
 
     @GetMapping("/token")
     @ResponseBody
@@ -79,7 +85,7 @@ public class TokenController {
                 .addHeader("Authorization", credentials)
                 .post(formBody)
                 .build();
-        
+
         var response = httpClient.newCall(request).execute();
         var body = response.body().string();
         System.out.println(body);

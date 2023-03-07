@@ -13,9 +13,6 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
     <body>
         <button id="login">Login to Twitter</button>
         <br/>
-        <input type="text" id="clientId" />
-        <br/>
-        <input type="text" id="clientSecret" />
         <br/>
         <label>access token</label>
         <div id="accessToken"></div>
@@ -25,15 +22,14 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
     </body>
     <script>
 
-        document.getElementById("login").addEventListener("click", () => {
-            var client = getClientDetails();
-            login(client.ci, client.cs);
+        document.getElementById("login").addEventListener("click", async () => {
+            var clientId = await getClientId();
+            login(clientId);
         });
 
         var urlParams = new URLSearchParams(window.location.search);
         if (urlParams.has("code")) {
-            var client = getClientDetails();
-            token(client.ci, client.cs, urlParams.get("code"))
+            token(urlParams.get("code"))
                     .then(obj => {
                         document.getElementById("accessToken").textContent = obj.accessToken;
                         document.getElementById("refreshToken").textContent = obj.refreshToken;

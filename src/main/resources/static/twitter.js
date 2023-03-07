@@ -5,11 +5,9 @@
 
 const scopes = ["tweet.read", "users.read", "tweet.write", "offline.access"]
 
-const getClientDetails = () => {
-    var ci = document.getElementById("clientId").value;
-    var cs = document.getElementById("clientSecret").value;
-
-    return {ci, cs};
+const getClientId = async () => {
+    const response = await fetch("clientId");
+    return await response.text();
 }
 
 
@@ -27,7 +25,7 @@ const login = (clientId, clientSecret) => {
     window.location.href = loginUrl + urlParams.toString();
 }
 
-const token = async (clientId, clientSecret, code) => {
+const token = async (code) => {
     var tokenUrl = "token?";
     var urlParams = new URLSearchParams();
     urlParams.append("code", code);
