@@ -6,3 +6,7 @@ Once you have the intial token, the [twitter api sdk](https://github.com/twitter
 
 Add `clientId` and `clientSecret` to the `application.properties` and run as a service.
 Get new tokens whenever you need.
+
+This project requires the [tweet-delete](https://github.com/aquino-a/tweet-delete) project to build.
+
+Build with `mvn install`
