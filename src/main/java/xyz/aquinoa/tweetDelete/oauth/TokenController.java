@@ -55,6 +55,9 @@ public class TokenController {
 
     @Value("${clientSecret}")
     private String clientSecret;
+    
+    @Value("${redirectUri}")
+    private String redirectUri;
 
     @Autowired
     private OkHttpClient httpClient;
@@ -74,7 +77,7 @@ public class TokenController {
         var formBody = new FormBody.Builder()
                 .add("code", code)
                 .add("grant_type", "authorization_code")
-                .add("redirect_uri", "http://localhost:8080")
+                .add("redirect_uri", redirectUri)
                 .add("code_verifier", "challenge")
                 .build();
 
