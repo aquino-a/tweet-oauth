@@ -6,11 +6,8 @@ package xyz.aquinoa.tweetDelete.oauth;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
-import java.net.URI;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
-import java.util.Base64;
+import java.util.Map;
+
 import okhttp3.Credentials;
 import okhttp3.FormBody;
 import okhttp3.OkHttpClient;
@@ -65,10 +62,10 @@ public class TokenController {
     @Autowired
     private ObjectMapper objectMapper;
 
-    @GetMapping("/clientId")
+    @GetMapping("/app")
     @ResponseBody
-    public String getClientId() {
-        return clientId;
+    public Map<String, String> getClientId() {
+        return Map.of("clientId", clientId, "redirectUri", redirectUri);
     }
 
     @GetMapping("/token")

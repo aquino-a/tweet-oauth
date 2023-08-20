@@ -5,18 +5,18 @@
 
 const scopes = ["tweet.read", "users.read", "tweet.write", "offline.access"]
 
-const getClientId = async () => {
-    const response = await fetch("clientId");
-    return await response.text();
+const getAppDetails = async () => {
+    const response = await fetch("app");
+    return await response.json();
 }
 
 
-const login = (clientId, clientSecret) => {
+const login = (clientId, redirect_uri) => {
     var loginUrl = "https://twitter.com/i/oauth2/authorize?";
     var urlParams = new URLSearchParams();
     urlParams.append("response_type", "code");
     urlParams.append("client_id", clientId);
-    urlParams.append("redirect_uri", "http://localhost:8080");
+    urlParams.append("redirect_uri", redirect_uri);
     urlParams.append("scope", scopes.join(' '));
     urlParams.append("state", "state");
     urlParams.append("code_challenge", "challenge");

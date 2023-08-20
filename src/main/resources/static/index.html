@@ -23,8 +23,8 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
     <script>
 
         document.getElementById("login").addEventListener("click", async () => {
-            var clientId = await getClientId();
-            login(clientId);
+            var appDetails = await getAppDetails();
+            login(appDetails.clientId, appDetails.redirectUri);
         });
 
         var urlParams = new URLSearchParams(window.location.search);
